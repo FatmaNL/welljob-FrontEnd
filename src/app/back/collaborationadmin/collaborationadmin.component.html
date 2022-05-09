@@ -1,0 +1,166 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container" id="main-container">
+<div class="row">
+	<div class="col-lg-12">
+        <a class="btn-get-started scrollto" (click)="onOpenModal(null, 'add')">Add Collaboration</a>
+		<div class="main-box clearfix">
+			<div class="table-responsive">
+				<table class="table user-list">
+					<thead>
+						<tr>
+							<th class="text-center"><span>Company/team</span></th>
+							<th class="text-center"><span>type</span></th>
+							<th class="text-center"><span>advantages</span></th>
+							<th class="text-center"><span>infos</span></th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let collaboration of collaborations">
+							<td>
+								{{collaboration.collaboratedWith}}
+							</td>
+							<td>
+								{{collaboration.typeCollaboration}}
+							</td>
+							<td class="text-center">
+								{{collaboration.advantages}}
+							</td>
+							<td>
+								{{collaboration.infosCollaboration}}
+							</td>
+							<td style="width: 20%;">
+								<a href="#" class="table-link">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a (click)="onOpenModal(collaboration, 'edit')" class="table-link">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a  (click)="onOpenModal(collaboration, 'delete')"  class="table-link danger">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<ul class="pagination pull-right">
+				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- Add Collaboration Modal -->
+<div class="modal fade" id="addCollaborationModal" tabindex="-1" role="dialog" aria-labelledby="addCollaborationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addCollaborationModalLabel">Add Collaboration</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddCollaboration(addForm)">
+            <div class="form-group">
+               <label for="collaboratedWith">Company</label>
+               <input type="text" ngModel name="collaboratedWith" class="form-control" id="collaboratedWith" placeholder="company" required>
+            </div>
+            <div class="form-group">
+                <label for="typeCollaboration">Type</label>
+                <input type="text" ngModel name="typeCollaboration" class="form-control" id="typeCollaboration" placeholder="Type" required>
+             </div>
+            <div class="form-group">
+               <label for="advantages">Advantages</label>
+               <input type="text" ngModel name="advantages" class="form-control" id="advantages" placeholder="Date" required>
+            </div>
+            <div class="form-group">
+               <label for="infosCollaboration">Infos</label>
+               <input type="text" ngModel name="infosCollaboration" class="form-control" id="infosCollaboration" placeholder="infosCollaboration" required>
+            </div>
+            <div class="modal-footer">
+               <button type="button" id="add-Collaboration-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
+  
+  <!-- Edit Modal -->
+  <div class="modal fade" id="updateCollaborationModal" tabindex="-1" role="dialog" aria-labelledby="CollaborationEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateCollaborationModalLabel">Edit Collaboration {{editCollaboration?.name}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <input type="hidden" ngModel="{{editCollaboration?.idCollaboration}}" name="idCollaboration" class="form-control" id="idCollaboration" placeholder="Email">
+                <div class="form-group">
+                   <label for="collaboratedWith">Company</label>
+                   <input type="text" ngModel="{{editCollaboration?.collaboratedWith}}" name="collaboratedWith" class="form-control" id="collaboratedWith" placeholder="Company">
+                </div>
+                <div class="form-group">
+                   <label for="typeCollaboration">Type</label>
+                   <input type="text" ngModel="{{editCollaboration?.typeCollaboration}}" name="typeCollaboration" class="form-control" id="typeCollaboration" placeholder="Type">
+                </div>
+                <div class="form-group">
+                   <label for="advantages">Advantages</label>
+                   <input type="text" ngModel="{{editCollaboration?.advantages}}" name="advantages" class="form-control" id="advantages" name="advantages" placeholder="Date">
+                </div>
+                <div class="form-group">
+                    <label for="infosCollaboration">infos</label>
+                    <input type="text" ngModel="{{editCollaboration?.infosCollaboration}}" name="infosCollaboration" class="form-control" id="infosCollaboration" placeholder="Number of people">
+                 </div>
+                <div class="modal-footer">
+                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button (click)="onUpdateCollaboration(editForm.value, editCollaboration?.idCollaboration)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteCollaborationModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Delete Collaboration</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Are you sure you want to delete Collaboration by {{deleteCollaboration?.reservedBy}}?</p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button (click)="onDeleteCollaboration(deleteCollaboration?.idCollaboration)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
