@@ -3,12 +3,15 @@ import { RouterModule, ROUTER_CONFIGURATION, Routes } from '@angular/router';
 import { ReservationComponent } from './reservation/reservation.component';
 import { BackComponent } from './back.component';
 import { CollaborationadminComponent } from './collaborationadmin/collaborationadmin.component';
+import { OfferComponent } from './offer/offer.component';
+import { AdvertisingComponent } from './advertising/advertising.component';
 
 const routes: Routes = [
   {path:'', component: BackComponent, children: [
     {path: 'reservation', component: ReservationComponent},
-    
-    {path: 'collaboration', component: CollaborationadminComponent}
+    {path: 'collaboration', component: CollaborationadminComponent},
+    {path: 'offer', component: OfferComponent},
+    {path: 'ads', component: AdvertisingComponent}
   ]},
    // /back/reservation
 ];

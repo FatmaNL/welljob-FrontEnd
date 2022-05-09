@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReservationService } from './reservation/reservation.service';
 import { CollaborationadminComponent } from './collaborationadmin/collaborationadmin.component';
+import { OfferComponent } from './offer/offer.component';
+import { AdvertisingComponent } from './advertising/advertising.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { CollaborationadminComponent } from './collaborationadmin/collaborationa
     SidePanelComponent,
     BackComponent,
     ReservationComponent,
-    CollaborationadminComponent
+    CollaborationadminComponent,
+    OfferComponent,
+    AdvertisingComponent
   ],
   imports: [
     CommonModule,
