@@ -131,10 +131,9 @@
              <form #editForm="ngForm">
                 <div class="form-group">
                    <label for="reservedBy">Name</label>
-                   <input type="text" ngModel="{{editReservation?.reservedBy}}" name="name" class="form-control" id="reservedBy" aria-describedby="emailHelp" placeholder="Name">
+                   <input type="text" ngModel="{{editReservation?.reservedBy}}" name="reservedBy" class="form-control" id="reservedBy" aria-describedby="emailHelp" placeholder="Name">
                 </div>
-                <input type="hidden" ngModel="{{editReservation?.id}}" name="id" class="form-control" id="id" placeholder="Email">
-                <input type="hidden" ngModel="{{editReservation?.reservationCode}}" name="userCode" class="form-control" id="userCode" placeholder="Email">
+                <input type="hidden" ngModel="{{editReservation?.idReservation}}" name="idReservation" class="form-control" id="idReservation" placeholder="Email">
                 <div class="form-group">
                    <label for="companyName">Company</label>
                    <input type="text" ngModel="{{editReservation?.companyName}}" name="companyName" class="form-control" id="companyName" placeholder="Company">
@@ -153,7 +152,7 @@
                 </div>
                 <div class="form-group">
                     <label for="numberPeople">Number of people</label>
-                    <input type="text" ngModel="{{editReservation?.imageUrl}}" name="numberPeople" class="form-control" id="numberPeople" placeholder="Number of people">
+                    <input type="text" ngModel="{{editReservation?.numberPeople}}" name="numberPeople" class="form-control" id="numberPeople" placeholder="Number of people">
                  </div>
                  <div class="form-group">
                     <label for="tel">Phone</label>
@@ -161,7 +160,7 @@
                  </div>
                 <div class="modal-footer">
                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                   <button (click)="onUpdateReservation(editForm.value, deleteReservation?.id)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                   <button (click)="onUpdateReservation(editForm.value, editReservation?.idReservation)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
                 </div>
              </form>
           </div>
