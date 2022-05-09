@@ -8,13 +8,19 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReservationService } from './reservation/reservation.service';
+import { CollaborationadminComponent } from './collaborationadmin/collaborationadmin.component';
+import { OfferComponent } from './offer/offer.component';
+import { AdvertisingComponent } from './advertising/advertising.component';
 
 
 @NgModule({
   declarations: [
     SidePanelComponent,
     BackComponent,
-    ReservationComponent
+    ReservationComponent,
+    CollaborationadminComponent,
+    OfferComponent,
+    AdvertisingComponent
   ],
   imports: [
     CommonModule,
