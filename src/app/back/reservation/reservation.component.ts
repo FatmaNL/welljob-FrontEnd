@@ -41,11 +41,11 @@ export class ReservationComponent implements OnInit {
       (response: Reservation) => {
         console.log(response);
         this.getReservations();
-        // addForm.reset();
+        addForm.reset();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        // addForm.reset();
+        addForm.reset();
       }
     );
   }

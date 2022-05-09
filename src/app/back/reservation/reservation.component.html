@@ -2,7 +2,7 @@
 <div class="container" id="main-container">
 <div class="row">
 	<div class="col-lg-12">
-        <a class="btn-get-started scrollto" (click)="onOpenModal(null, 'add')" data-toggle="modal" type="button">Add Reservation</a>
+        <a class="btn-get-started scrollto" (click)="onOpenModal(null, 'add')">Add Reservation</a>
 		<div class="main-box clearfix">
 			<div class="table-responsive">
 				<table class="table user-list">
@@ -17,19 +17,19 @@
 					</thead>
 					<tbody>
 						<tr *ngFor="let reservation of reservations">
-							<td class="text-center">
+							<td>
 								{{reservation.reservedBy}}
 							</td>
-							<td class="text-center">
+							<td>
 								{{reservation.companyName}}
 							</td>
 							<td class="text-center">
 								{{reservation.dateReservation}}
 							</td>
-							<td class="text-center">
+							<td>
 								{{reservation.duration}}
 							</td>
-							<td class="text-center" style="width: 20%;">
+							<td style="width: 20%;">
 								<a href="#" class="table-link">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
@@ -68,7 +68,7 @@
 </div>
 
 <!-- Add Reservation Modal -->
-<div  id="addReservationModal" tabindex="-1" role="dialog" aria-labelledby="addReservationModalLabel" aria-hidden="true">
+<div class="modal fade" id="addReservationModal" tabindex="-1" role="dialog" aria-labelledby="addReservationModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
@@ -109,7 +109,7 @@
              </div>
             <div class="modal-footer">
                <button type="button" id="add-Reservation-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button (click)="onAddReservation(addForm.value)" class="btn btn-primary" type="submit">Save changes</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
             </div>
             </form>
          </div>
@@ -118,7 +118,7 @@
     </div>
   
   <!-- Edit Modal -->
-  <div id="updateReservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationEditModalLabel" aria-hidden="true">
+  <div class="modal fade" id="updateReservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationEditModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
        <div class="modal-content">
           <div class="modal-header">
@@ -170,7 +170,7 @@
   </div>
   
   <!-- Delete Modal -->
-  <div id="deleteReservationModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteReservationModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
        <div class="modal-content">
           <div class="modal-header">
@@ -183,13 +183,9 @@
              <p>Are you sure you want to delete reservation by {{deleteReservation?.reservedBy}}?</p>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button (click)="onDeleteReservation(deleteReservation?.reservationId)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                <button (click)="onDeleteReservation(deleteReservation?.idReservation)" class="btn btn-danger" data-dismiss="modal">Yes</button>
              </div>
           </div>
        </div>
     </div>
   </div>
-
-  <script>
-    $("[data-toggle='modal']").modal();
-</script>
