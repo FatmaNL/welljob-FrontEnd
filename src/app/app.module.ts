@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FrontModule } from './front/front.module';
+import { BackModule } from './back/back.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ReservationService } from './back/reservation/reservation.service';
 
 @NgModule({
   declarations: [
@@ -12,9 +16,12 @@ import { FrontModule } from './front/front.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FrontModule
+    FrontModule,
+    BackModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ReservationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

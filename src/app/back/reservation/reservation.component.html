@@ -1,0 +1,195 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container" id="main-container">
+<div class="row">
+	<div class="col-lg-12">
+        <a class="btn-get-started scrollto" (click)="onOpenModal(null, 'add')" data-toggle="modal" type="button">Add Reservation</a>
+		<div class="main-box clearfix">
+			<div class="table-responsive">
+				<table class="table user-list">
+					<thead>
+						<tr>
+							<th class="text-center"><span>Reserved By</span></th>
+							<th class="text-center"><span>Company Name</span></th>
+							<th class="text-center"><span>Date</span></th>
+							<th class="text-center"><span>Duration</span></th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let reservation of reservations">
+							<td class="text-center">
+								{{reservation.reservedBy}}
+							</td>
+							<td class="text-center">
+								{{reservation.companyName}}
+							</td>
+							<td class="text-center">
+								{{reservation.dateReservation}}
+							</td>
+							<td class="text-center">
+								{{reservation.duration}}
+							</td>
+							<td class="text-center" style="width: 20%;">
+								<a href="#" class="table-link">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a (click)="onOpenModal(reservation, 'edit')" class="table-link">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a  (click)="onOpenModal(reservation, 'delete')"  class="table-link danger">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<ul class="pagination pull-right">
+				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- Add Reservation Modal -->
+<div  id="addReservationModal" tabindex="-1" role="dialog" aria-labelledby="addReservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addReservationModalLabel">Add Reservation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddReservation(addForm)">
+            <div class="form-group">
+               <label for="reservedBy">Name</label>
+               <input type="text" ngModel name="reservedBy" class="form-control" id="reservedBy" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+               <label for="companyName">Company</label>
+               <input type="text" ngModel name="companyName" class="form-control" id="companyName" placeholder="company" required>
+            </div>
+            <div class="form-group">
+                <label for="typeCompany">Type</label>
+                <input type="text" ngModel name="typeCompany" class="form-control" id="typeCompany" placeholder="Type" required>
+             </div>
+            <div class="form-group">
+               <label for="dateReservation">Date</label>
+               <input type="text" ngModel name="dateReservation" class="form-control" id="dateReservation" placeholder="Date" required>
+            </div>
+            <div class="form-group">
+               <label for="duration">Duration</label>
+               <input type="text" ngModel name="duration" class="form-control" id="duration" placeholder="duration" required>
+            </div>
+            <div class="form-group">
+               <label for="numberPeople">Number of people</label>
+               <input type="text" ngModel name="numberPeople" class="form-control" id="numberPeople" placeholder="Number of people" required>
+            </div>
+            <div class="form-group">
+                <label for="tel">Phone</label>
+                <input type="text" ngModel name="tel" class="form-control" id="tel" placeholder="Phone" required>
+             </div>
+            <div class="modal-footer">
+               <button type="button" id="add-Reservation-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button (click)="onAddReservation(addForm.value)" class="btn btn-primary" type="submit">Save changes</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
+  
+  <!-- Edit Modal -->
+  <div id="updateReservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateReservationModalLabel">Edit Reservation {{editReservation?.name}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <div class="form-group">
+                   <label for="reservedBy">Name</label>
+                   <input type="text" ngModel="{{editReservation?.reservedBy}}" name="name" class="form-control" id="reservedBy" aria-describedby="emailHelp" placeholder="Name">
+                </div>
+                <input type="hidden" ngModel="{{editReservation?.id}}" name="id" class="form-control" id="id" placeholder="Email">
+                <input type="hidden" ngModel="{{editReservation?.reservationCode}}" name="userCode" class="form-control" id="userCode" placeholder="Email">
+                <div class="form-group">
+                   <label for="companyName">Company</label>
+                   <input type="text" ngModel="{{editReservation?.companyName}}" name="companyName" class="form-control" id="companyName" placeholder="Company">
+                </div>
+                <div class="form-group">
+                   <label for="typeCompany">Type</label>
+                   <input type="text" ngModel="{{editReservation?.typeCompany}}" name="typeCompany" class="form-control" id="typeCompany" placeholder="Type">
+                </div>
+                <div class="form-group">
+                   <label for="dateReservation">Date</label>
+                   <input type="text" ngModel="{{editReservation?.dateReservation}}" name="dateReservation" class="form-control" id="dateReservation" name="dateReservation" placeholder="Date">
+                </div>
+                <div class="form-group">
+                   <label for="duration">Duration</label>
+                   <input type="text" ngModel="{{editReservation?.duration}}" name="duration" class="form-control" id="duration" placeholder="Duration">
+                </div>
+                <div class="form-group">
+                    <label for="numberPeople">Number of people</label>
+                    <input type="text" ngModel="{{editReservation?.imageUrl}}" name="numberPeople" class="form-control" id="numberPeople" placeholder="Number of people">
+                 </div>
+                 <div class="form-group">
+                    <label for="tel">Phone</label>
+                    <input type="text" ngModel="{{editReservation?.tel}}" name="tel" class="form-control" id="tel" placeholder="Phone">
+                 </div>
+                <div class="modal-footer">
+                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button (click)="onUpdateReservation(editForm.value, deleteReservation?.id)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+  <!-- Delete Modal -->
+  <div id="deleteReservationModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Delete Reservation</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Are you sure you want to delete reservation by {{deleteReservation?.reservedBy}}?</p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button (click)="onDeleteReservation(deleteReservation?.reservationId)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+
+  <script>
+    $("[data-toggle='modal']").modal();
+</script>
