@@ -1,1 +1,154 @@
-<p>advertising works!</p>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container" id="main-container">
+<div class="row">
+	<div class="col-lg-12">
+        <a class="btn-get-started scrollto" (click)="onOpenModal(null, 'add')">Add Advertising</a>
+		<div class="main-box clearfix">
+			<div class="table-responsive">
+				<table class="table user-list">
+					<thead>
+						<tr>
+							<th class="text-center"><span>Title</span></th>
+							<th class="text-center"><span>Category</span></th>
+							<th class="text-center"><span>Duration</span></th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let advertising of Advertisings">
+							<td class="text-center">
+								{{advertising.titleAd}}
+							</td>
+							<td>
+								{{advertising.categoryAd}}
+							</td>
+							<td>
+								{{advertising.durationAd}}
+							</td>
+							<td style="width: 20%;">
+								<a href="#" class="table-link">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a (click)="onOpenModal(advertising, 'edit')" class="table-link">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a  (click)="onOpenModal(advertising, 'delete')"  class="table-link danger">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<ul class="pagination pull-right">
+				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- Add Advertising Modal -->
+<div class="modal fade" id="addAdvertisingModal" tabindex="-1" role="dialog" aria-labelledby="addAdvertisingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addAdvertisingModalLabel">Add Advertising</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddAdvertising(addForm)">
+            <div class="form-group">
+               <label for="titleAd">Title</label>
+               <input type="text" ngModel name="titleAd" class="form-control" id="titleAd" placeholder="company" required>
+            </div>
+            <div class="form-group">
+                <label for="categoryAd">Category</label>
+                <input type="text" ngModel name="categoryAd" class="form-control" id="categoryAd" placeholder="Type" required>
+             </div>
+            <div class="form-group">
+               <label for="durationAd">Duration</label>
+               <input type="text" ngModel name="durationAd" class="form-control" id="durationAd" placeholder="Date" required>
+            </div>
+            <div class="modal-footer">
+               <button type="button" id="add-Advertising-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
+  
+  <!-- Edit Modal -->
+  <div class="modal fade" id="updateAdvertisingModal" tabindex="-1" role="dialog" aria-labelledby="AdvertisingEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateAdvertisingModalLabel">Edit Advertising </h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <input type="hidden" ngModel="{{editAdvertising?.idAd}}" name="idAd" class="form-control" id="idAd" placeholder="Email">
+                <div class="form-group">
+                   <label for="titleAd">Title</label>
+                   <input type="text" ngModel="{{editAdvertising?.titleAd}}" name="titleAd" class="form-control" id="titleAd" placeholder="Company">
+                </div>
+                <div class="form-group">
+                   <label for="categoryAd">Category</label>
+                   <input type="text" ngModel="{{editAdvertising?.categoryAd}}" name="categoryAd" class="form-control" id="categoryAd" placeholder="Type">
+                </div>
+                <div class="form-group">
+                   <label for="durationAd">Duration</label>
+                   <input type="text" ngModel="{{editAdvertising?.durationAd}}" name="durationAd" class="form-control" id="durationAd" name="durationAd" placeholder="Date">
+                </div>
+                <div class="modal-footer">
+                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button (click)="onUpdateAdvertising(editForm.value, editAdvertising?.idAd)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteAdvertisingModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Delete Advertising</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Are you sure you want to delete Advertising by {{deleteAdvertising?.titleAd}}?</p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button (click)="onDeleteAdvertising(deleteAdvertising?.idAd)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
