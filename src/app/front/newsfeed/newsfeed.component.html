@@ -1,1 +1,29 @@
-<p>newsfeed works!</p>
+
+<div class="news-container">
+    <div class="new-post-input-container">
+        <mat-form-field>
+            <input matInput [(ngModel)]="postTitle" placeholder="Title" />
+        </mat-form-field>
+        <mat-form-field class="new-post-input" appearance="fill">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput [(ngModel)]="postContent" placeholder="Type post content here ..."></textarea>
+        </mat-form-field>
+
+        <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+        <button mat-raised-button (click)="fileInput.click()">Select File</button>
+        <img src={{imageUrl}} />
+
+        <button mat-raised-button color="primary" class="new-post-btn" (click)="addNewPost()">Post</button>
+    </div>
+
+    <!-- for posts in post-->
+    <app-news-post
+        title={{post.titlePost}} 
+        content={{post.contentPost}} 
+        subtitle={{post.datePost}} 
+        class="news-post"
+        image={{post.image}}
+        idpost={{post.idPost}} *ngFor="let post of posts">
+    </app-news-post>
+</div>
+

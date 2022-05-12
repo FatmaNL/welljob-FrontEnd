@@ -1,0 +1,35 @@
+.new-post-input-container {
+    background-color: white;
+    border-radius: 5px;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.new-post-input {
+    /* border: 1px solid black; */
+}
+
+.news-container-actions {
+
+}
+
+.new-post-btn {
+    align-self: flex-end;
+}
+
+.news-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+}
+
+.news-post {
+    margin: 10px;
+    min-width: 60%; 
+    width: 60%;
+}

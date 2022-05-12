@@ -7,6 +7,10 @@ import { FooterComponent } from './footer/footer.component';
 import { FrontComponent } from './front.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { CollaborationsComponent } from './collaborations/collaborations.component';
+import { ReserverComponent } from './reserver/reserver.component';
+import { MaterialModule } from './material.module';
+import { NewsPostComponent } from './news-post/news-post.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +19,18 @@ import { CollaborationsComponent } from './collaborations/collaborations.compone
     NavbarComponent,
     FooterComponent,
     NewsfeedComponent,
-    CollaborationsComponent
+    CollaborationsComponent,
+    ReserverComponent,
+    NewsPostComponent
   ],
   imports: [
     CommonModule,
-    FrontRoutingModule
+    FormsModule,
+    FrontRoutingModule,
+    MaterialModule
+  ],
+  exports:[
+    MaterialModule
   ]
 })
 export class FrontModule { }
