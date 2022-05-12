@@ -1,0 +1,41 @@
+<div class="news-post">
+    <div class="header">
+        <span></span>
+        <span class="postTitle">{{title}}</span>
+        <span class="date">Posted on {{subtitle}}</span>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="content">
+		<p class="body-1">{{content}}</p>
+		<img src="{{image}}"/>
+    </div>
+	<mat-divider></mat-divider>
+    <div class="actions">
+		<button mat-icon-button (click)="toggleCommentInput()" color="primary">
+			<mat-icon>question_answer</mat-icon>	
+		</button>
+
+		<button mat-icon-button (click)="toggleLike()">
+		  <mat-icon [ngClass]="liked ? 'liked' : 'disliked'">thumb_up</mat-icon>
+		</button>
+    </div>
+
+    <div class="new-comment mat-elevation-z0" [hidden]="!showNewCommentInput">
+        <div class="comment-container">
+            <mat-form-field class="example-full-width" appearance="fill" class="new-comment-input">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput placeholder="Type new comment here" [(ngModel)]="commContent"></textarea>
+            </mat-form-field>
+            <button mat-stroked-button color="accent" (click)="onAddComment()">Submit</button>
+        </div>
+    </div>
+
+    <div class="post-comment mat-elevation-z0" *ngFor="let CommentNewsFeed of comments">
+        <div class="comment-container">
+            <div class="comment-author">author</div>
+            <div class="comment-content">{{CommentNewsFeed.contentComment}}</div>
+        </div>
+    </div>
+</div>
+
+  <!-- for loop : comments -->

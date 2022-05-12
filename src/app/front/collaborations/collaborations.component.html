@@ -1,1 +1,91 @@
-<p>collaborations works!</p>
+<!-- reservations -->
+<div class="jumbotron-hub-jumbo">
+    <div class="hub-btns">
+        <a class="getstarted scrollto" href="" role="button" routerLink="reserver">Mes reservations</a>
+    </div>
+</div>
+
+<div class="container" id="main-container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box clearfix">
+                <div class="table-responsive">
+                    <table class="table user-list">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span>Reserved By</span></th>
+                                <th class="text-center"><span>Company Name</span></th>
+                                <th class="text-center"><span>Date</span></th>
+                                <th class="text-center"><span>Duration</span></th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let reservation of reservations">
+                                <td>
+                                    {{reservation.reservedBy}}
+                                </td>
+                                <td>
+                                    {{reservation.companyName}}
+                                </td>
+                                <td class="text-center">
+                                    {{reservation.dateReservation}}
+                                </td>
+                                <td>
+                                    {{reservation.duration}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ul class="pagination pull-right">
+                    <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- offres -->
+
+    <div class="jumbotron-hub-jumbo">
+        <div class="hub-btns">
+            <a class="getstarted scrollto" href="" role="button" routerLink="reserver">Available offers</a>
+        </div>
+    </div>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="contact-box center-version">
+                    <a href="#profile.html">
+                        <h3 class="m-b-xs"><strong>John Smith</strong></h3>
+            
+                        <div class="font-bold">Graphics designer</div>
+                        <address class="m-t-md">
+                            <strong>Twitter, Inc.</strong><br>
+                            795 Folsom Ave, Suite 600<br>
+                            San Francisco, CA 94107<br>
+                            <abbr title="Phone">P:</abbr> (123) 456-7890
+                        </address>
+            
+                    </a>
+                    <div class="contact-box-footer">
+                        <div class="m-t-xs btn-group">
+                            <a class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Call </a>
+                            <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
+                            <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow</a>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+    </div>
