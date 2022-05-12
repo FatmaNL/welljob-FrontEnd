@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Reservation } from 'src/app/reservation';
 import { ReservationService } from './reservation.service';
 
@@ -46,6 +47,22 @@ export class ReservationComponent implements OnInit {
       (error: HttpErrorResponse) => {
         alert(error.message);
         addForm.reset();
+      }
+    );
+  }
+
+  public onExport(): void {
+    // document.getElementById('add-reservation-form').click();
+    this.reservationService.exportReservation().subscribe(
+      (blob: Blob) => {
+        const file = new Blob([blob], {type: 'application/pdf'});
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL, '_blank', 'width=1000, height=800');
+        console.log();
+        this.getReservations();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
       }
     );
   }

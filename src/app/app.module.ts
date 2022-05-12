@@ -8,6 +8,8 @@ import { BackModule } from './back/back.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReservationService } from './back/reservation/reservation.service';
+import { MaterialModule } from './front/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ReservationService } from './back/reservation/reservation.service';
     FrontModule,
     BackModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [ReservationService],
   bootstrap: [AppComponent]

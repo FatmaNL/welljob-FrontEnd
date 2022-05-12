@@ -29,5 +29,10 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
+  },
+  "paths": {
+    "exceljs":[
+      "node_modules/exceljs/dist/exceljs.min"
+    ]
   }
 }

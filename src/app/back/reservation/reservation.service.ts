@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Reservation } from 'src/app/reservation';
@@ -26,4 +26,10 @@ export class ReservationService {
     return this.http.delete<void>(`${this.apiServerUrl}/reservation/deletereservation/${reservationId}`);
   }
   
+  public exportReservation(): Observable<Blob> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get<Blob>(`${this.apiServerUrl}/reservation/export/pdf`, { headers: headers, responseType: 'blob' as 'json' });
+  }
+
 }
