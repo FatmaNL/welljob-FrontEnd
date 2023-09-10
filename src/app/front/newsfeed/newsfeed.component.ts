@@ -10,7 +10,7 @@ import { PostService } from '../news-post/news-post.service';
 })
 export class NewsfeedComponent implements OnInit {
 
-  posts: any[];
+  posts: Post[];
   constructor(private postService: PostService) { }
 
   public postTitle: string;
@@ -47,17 +47,26 @@ export class NewsfeedComponent implements OnInit {
   }
 
   public addNewPost(): void {
-    var newPost= {
+    var newPost: Post= {
       titlePost: this.postTitle,
       contentPost: this.postContent,
+      likePost: 0 ,
       datePost: new Date().toDateString(),
-      image: this.imageUrl,
+      photos: this.imageUrl,
       idPost: 8
     }
 
-    // http POST /post
+    this.postService.addPost(newPost).subscribe(
+      (response: Post) => {
+        console.log(response);
+        newPost.idPost=response.idPost;
+        this.getPosts();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
 
-    this.posts.push(newPost);
     
   }
 

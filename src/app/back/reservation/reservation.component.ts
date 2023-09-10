@@ -49,6 +49,15 @@ export class ReservationComponent implements OnInit {
         addForm.reset();
       }
     );
+    this.reservationService.sendMail().subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getReservations();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   public onExport(): void {

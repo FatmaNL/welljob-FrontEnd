@@ -32,4 +32,8 @@ export class ReservationService {
     return this.http.get<Blob>(`${this.apiServerUrl}/reservation/export/pdf`, { headers: headers, responseType: 'blob' as 'json' });
   }
 
+  public sendMail(): Observable<void> {
+    return this.http.get<void>(`${this.apiServerUrl}/mail`);
+  }
+
 }

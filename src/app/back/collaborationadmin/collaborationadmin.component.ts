@@ -94,4 +94,18 @@ export class CollaborationadminComponent implements OnInit {
     container.appendChild(button);
     button.click();
   }
+
+  public onExportExcel(): void{
+    this.collaborationService.exportReservation().subscribe(
+      (blob: Blob) => {
+        const file = new Blob([blob], {type: 'application/octet-stream'});
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL, '_blank', 'width=1000, height=800');
+        console.log();
+        this.getCollaborations();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      });
+  }
 }

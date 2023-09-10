@@ -12,7 +12,7 @@ const routes: Routes = [
     {path: 'collaboration', component: CollaborationsComponent, children:[{path: 'reserver', component: ReserverComponent}]}
     
   ]}, // /front/
-  {path: 'dashboard', redirectTo: '/back', pathMatch:'full'}
+  {path: 'dashboard', redirectTo: '/back/reservation', pathMatch:'full'}
    // /front/dashboard
    // /froreserverard
 ];

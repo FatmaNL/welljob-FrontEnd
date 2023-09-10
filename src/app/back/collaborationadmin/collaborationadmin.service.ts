@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Collaboration } from "src/app/collaboration";
@@ -24,6 +24,12 @@ export class CollaborationService {
 
   public deleteCollaboration(collaborationId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/collaboration/deletecollaboration/${collaborationId}`);
+  }
+
+  public exportReservation(): Observable<Blob> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/octet-stream');
+    return this.http.get<Blob>(`${this.apiServerUrl}/collaboration/export/excel`, { headers: headers, responseType: 'blob' as 'json' });
   }
   
 }

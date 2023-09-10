@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Post } from "src/app/post";
@@ -18,7 +18,10 @@ export class PostService {
   }
 
   public addPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(`${this.apiServerUrl}/post/addpost`, post);
+    let headers = new HttpHeaders({
+      'Content-Type': 'multipart/form-data'});
+      let options = { headers: headers, reportProgress: true };
+    return this.http.post<Post>(`${this.apiServerUrl}/post/addpost`, post, options);
   }
 
   public updatePost(post: Post, postId: number): Observable<Post> {
