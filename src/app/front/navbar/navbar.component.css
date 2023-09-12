@@ -1,0 +1,74 @@
+
+
+:host {
+    display: flex;
+    height: 64px;
+}
+
+header {
+    width: 100%;
+}
+
+.item {
+    color: inherit;
+}
+
+.links {
+    font-weight: 300;
+    font-size: smaller;
+    display: flex;
+    height: 64px;
+    justify-content: center;
+    align-items: center;
+}
+
+.links .item {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    height: 64px;
+    text-decoration: none;
+}
+
+.controls {
+    font-weight: 300;
+    display: flex;
+    height: 64px;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls .item {
+    display: flex;
+    font-weight: 400;
+    font-size: smaller;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    height: 64px;
+}
+
+.item:hover {
+    border-bottom: 4px solid black !important;
+    background-color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.active {
+    border-bottom: 4px solid black !important;
+    background-color: white;
+    text-decoration: none;
+}
+
+mat-toolbar {
+    padding: 0;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 4px solid saddlebrown;
+    background-color: white;
+}

@@ -22,8 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BackModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
     MaterialModule,
-    BrowserAnimationsModule
   ],
   providers: [ReservationService],
   bootstrap: [AppComponent]

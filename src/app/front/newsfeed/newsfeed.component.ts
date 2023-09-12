@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Post } from 'src/app/post';
 import { PostService } from '../news-post/news-post.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-newsfeed',
@@ -11,11 +12,12 @@ import { PostService } from '../news-post/news-post.service';
 export class NewsfeedComponent implements OnInit {
 
   posts: Post[];
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService, @Inject(LOCALE_ID) private locale: string) { }
 
   public postTitle: string;
   public postContent: string;
-  public imageUrl: string | ArrayBuffer;
+  public imageData: string | ArrayBuffer;
+  public imageFile: File;
 
   //posts[] = http get (including comments)
 
@@ -37,12 +39,12 @@ export class NewsfeedComponent implements OnInit {
   }
 
   public onFileChanged($event: any): void {
-    var file = $event.target.files[0];
+    this.imageFile = $event.target.files[0];
     var reader = new FileReader();
-		reader.readAsDataURL(file);
+		reader.readAsDataURL(this.imageFile);
 		
 		reader.onload = (_event) => {
-			this.imageUrl = reader.result; 
+			this.imageData = reader.result; 
 		}
   }
 
@@ -51,12 +53,12 @@ export class NewsfeedComponent implements OnInit {
       titlePost: this.postTitle,
       contentPost: this.postContent,
       likePost: 0 ,
-      datePost: new Date().toDateString(),
-      photos: this.imageUrl,
+      datePost: formatDate(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS", this.locale),
+      photos: '',
       idPost: 8
     }
 
-    this.postService.addPost(newPost).subscribe(
+    this.postService.addPost(newPost, this.imageFile).subscribe(
       (response: Post) => {
         console.log(response);
         newPost.idPost=response.idPost;

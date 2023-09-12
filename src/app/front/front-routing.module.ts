@@ -7,14 +7,11 @@ import { ReserverComponent } from './reserver/reserver.component';
 
 const routes: Routes = [
   {path: '', component: FrontComponent, children: [
-
+    {path: '', redirectTo: 'newsfeed', pathMatch: 'full'},
     {path: 'newsfeed', component: NewsfeedComponent},
     {path: 'collaboration', component: CollaborationsComponent, children:[{path: 'reserver', component: ReserverComponent}]}
-    
-  ]}, // /front/
+  ]},
   {path: 'dashboard', redirectTo: '/back/reservation', pathMatch:'full'}
-   // /front/dashboard
-   // /froreserverard
 ];
 
 @NgModule({

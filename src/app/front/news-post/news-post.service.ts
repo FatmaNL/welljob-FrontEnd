@@ -17,11 +17,16 @@ export class PostService {
     return this.http.get<Post[]>(`${this.apiServerUrl}/post/getpost/${postId}`);
   }
 
-  public addPost(post: Post): Observable<Post> {
-    let headers = new HttpHeaders({
-      'Content-Type': 'multipart/form-data'});
-      let options = { headers: headers, reportProgress: true };
-    return this.http.post<Post>(`${this.apiServerUrl}/post/addpost`, post, options);
+  public addPost(post: Post, image: File): Observable<Post> {
+    let headers = new HttpHeaders({'Content-Type': 'multipart/form-data'});
+    let newPostRequest = { 'post' : JSON.stringify(post), 'image' : image };
+    let options = { reportProgress: true };
+    
+    let formData = new FormData();
+    formData.append('post', JSON.stringify(post));
+    formData.append('image', image);
+    
+    return this.http.post<Post>(`${this.apiServerUrl}/post/addpost`, formData, options);
   }
 
   public updatePost(post: Post, postId: number): Observable<Post> {

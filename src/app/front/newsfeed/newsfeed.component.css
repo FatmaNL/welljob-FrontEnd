@@ -1,35 +1,34 @@
-.new-post-input-container {
-    background-color: white;
-    border-radius: 5px;
-    width: 70%;
+:host {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+}
+
+.feed {
+    margin: 40px;
+    padding: 20px;
+    width: 600px;
+    /* background-color: white; */
+    /* border: 1px solid gray; */
+}
+
+.new-post {
     padding: 10px;
+    padding-bottom: 20px;
+    border: 1px solid #e4e4e4;
+    border-top: 5px solid saddlebrown;
 }
 
-.new-post-input {
-    /* border: 1px solid black; */
+.new-post textarea {
+    background-color: white;
 }
 
-.news-container-actions {
-
-}
-
-.new-post-btn {
-    align-self: flex-end;
-}
-
-.news-container {
-    width: 100%;
+mat-card-content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 50px;
+    flex-flow: column nowrap;
+    padding: 0;
 }
 
-.news-post {
-    margin: 10px;
-    min-width: 60%; 
-    width: 60%;
+mat-card-actions {
+    display: flex;
+    justify-content: end;
+    padding: 0;
 }

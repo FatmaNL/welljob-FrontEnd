@@ -11,7 +11,7 @@ import { ReserverComponent } from './reserver/reserver.component';
 import { MaterialModule } from './material.module';
 import { NewsPostComponent } from './news-post/news-post.component';
 import { FormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,9 +27,6 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     FrontRoutingModule,
-    MaterialModule
-  ],
-  exports:[
     MaterialModule
   ]
 })
